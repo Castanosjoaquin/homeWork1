@@ -2,9 +2,8 @@
 enum class severity_levels: int{DEBUG =1,INFO,WARNING,ERROR,CRITICAL}; 
 
 int main(){ 
-    logMessage("puto el que lee, re troll xd", 1); 
     return 0; 
-}
+} 
 
 void logMessage(string message, auto severity){ 
     ofstream logFile("logFile.txt", ios::app); 
@@ -12,16 +11,21 @@ void logMessage(string message, auto severity){
         switch (severity) {
         case severity_levels::DEBUG: 
             logFile << "[DEBUG]" << ' ' << message; 
+            break;
         case severity_levels::INFO: 
             logFile<<"[INFO]"<< ' ' << message; 
+            break;
         case severity_levels::WARNING: 
             logFile<<"[WARNING]"<< ' ' << message; 
+            break;
         case severity_levels::ERROR: 
             logFile<<"[ERROR]"<< ' ' << message; 
+            break;
         case severity_levels::CRITICAL: 
             logFile<<"[CRITICAL]"<< ' ' << message; 
+            break;
         default:
-            cout<<"chupame la pija"; 
+            cout<<"Unknow alert"; 
         }
         logFile.close(); 
 }else
