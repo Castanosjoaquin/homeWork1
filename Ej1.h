@@ -4,4 +4,4 @@ using namespace std;
 
 
 vector<vector<int>> create_matrix(int n); 
-void print_matrix(int n, vector<vector<int>> matrix); 
+void print_matrix(vector<vector<int>> matrix); 
