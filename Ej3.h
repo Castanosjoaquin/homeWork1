@@ -11,12 +11,11 @@ struct Node{
 struct List{
     shared_ptr<Node> head; 
     u_int8_t size;
-
 };
 
 shared_ptr<Node> creat_node(int value); 
-void push_front(shared_ptr<Node> newNode, List &list); 
-void push_back(shared_ptr<Node> newNode, List &list); 
-void instert(shared_ptr<Node> newNode,int index, List &list);
-void erase(List list,int index); 
+void push_front(int value, List &list); 
+void push_back(int value, List &list); 
+void insert(int value,int index, List &list);
+void erase(List &list,int index); 
 void print_list(List &list); 

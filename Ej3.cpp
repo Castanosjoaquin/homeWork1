@@ -8,27 +8,25 @@ int main(){
     List list; 
     list.head = nullptr; 
     list.size = 0 ;
-    // Create nodes
-    shared_ptr<Node> node1 = creat_node(1);
-    shared_ptr<Node> node2 = creat_node(2);
-    shared_ptr<Node> node3 = creat_node(3);
-    shared_ptr<Node> node4 = creat_node(4);
-    shared_ptr<Node> node5 = creat_node(5);
 
-    // Push nodes to the front
-    push_front(node1, list);
-    push_front(node2, list);
-    push_front(node3, list);
 
-    push_back(node4,list); 
-    push_back(node5,list); 
+    push_front(1, list);
+    push_front(2, list);
+    push_front(3, list);
+
+    push_back(4,list); 
+    push_back(5,list); 
     print_list(list); 
 
-    instert(node4,1,list); 
-
+    insert(5,1,list);    
+    print_list(list); 
+    insert(6, 2, list);
+    print_list(list);
+    erase(list, 0 ); 
     print_list(list); 
 
-    
+    erase(list,3);
+    print_list(list); 
 
 
 
@@ -43,55 +41,60 @@ shared_ptr<Node> creat_node(int value){
 }
 
 
-void push_front(shared_ptr<Node> newNode, List &list){ 
+void push_front(int value, List &list){ 
+    shared_ptr<Node> newNode = creat_node( value); 
     newNode->next = list.head; 
-    list.head = move(newNode); 
+    list.head = newNode; 
     list.size ++; 
 }
 
-void push_back(shared_ptr<Node> newNode, List &list){    
+void push_back(int value, List &list){    
+    shared_ptr<Node> newNode = creat_node( value); 
     if(list.head ==  nullptr){ 
-        list.head=  move(newNode);
+        list.head=  newNode;
     }
     else{ 
         shared_ptr<Node> curr = list.head; 
         while (curr->next != nullptr){
             curr = curr->next;  
         }
-
-        curr->next = newNode; // no hace falta liberar curr por q muere cuando termina la funcion
+        curr->next = newNode; 
     }
     list.size ++ ;
 }
 
-void instert(shared_ptr<Node> newNode,int index, List &list){
+void insert(int value ,int index, List &list){
+    if(index > list.size) {
+        cout<<"index out range, so the element has been insert at the end of the list"<< endl; 
+        push_back(value, list);
+        return; }
+    if(index ==0 ){  push_front(value, list); return; }
+
+    shared_ptr<Node> newNode = creat_node( value); 
     shared_ptr<Node> currentNode = list.head; 
-    for(int i =0 ; i< index; i++){ 
-        if (currentNode == nullptr || currentNode->next == nullptr) {
-            cerr << "Index out of range";
-            return;
-        }
+    for(int i =0 ; i< index-1; i++){ 
         currentNode=currentNode->next; 
     }
     newNode->next = currentNode->next; 
     currentNode->next = newNode;  
+    list.size ++; 
 }
 
-void erase(List list,int index){ 
+void erase(List &list,int index){ 
+    if(index > list.size) {cout<<"Out of index"; return; }
 
-shared_ptr<Node> currentNode = list.head; // chequear lo de sharear el pointer
-for (int i = 0; i < index - 1; i++) {
-    if (currentNode == nullptr || currentNode->next == nullptr) {
-        cerr << "Index out of range";
-        return;
+    if(index == 0){ 
+        list.head= list.head->next; 
+        list.size--; 
+        return; 
     }
-    currentNode = move(currentNode->next);
-}
-
-// chequear
-currentNode->next = move(currentNode->next->next);
-
-}
+    shared_ptr<Node> currentNode = list.head; 
+    for (int i = 0; i < index - 1; i++) {
+        currentNode =currentNode->next;
+    }
+    currentNode->next = currentNode->next->next;
+    list.size --; 
+    }
 
 void print_list(List &list) {
     shared_ptr<Node> currentNode = list.head;

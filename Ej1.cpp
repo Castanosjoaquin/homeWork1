@@ -1,7 +1,7 @@
 #include "Ej1.h"
 
 int main(){ 
-    vector<vector<int>> a = create_matrix(9); 
+    vector<vector<int>> a = create_matrix(3); 
     print_matrix(a); 
     return 0; 
 }
@@ -28,9 +28,9 @@ void print_matrix(vector<vector<int>> matrix){
         if (colum == -1){ 
             colum = n-1; 
             row -=1; 
-            cout<<endl;
         }
-        cout<<matrix[row][colum]<<" "; 
+        cout<<"matrix["<<row<<"]["<<colum<<"]="<< matrix[row][colum] ; 
+        cout<<endl;
         colum -=1; 
     }
     cout<<endl;
