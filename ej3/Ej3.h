@@ -10,6 +10,7 @@ struct Node{
 
 struct List{
     shared_ptr<Node> head; 
+    shared_ptr<Node> tail; 
     u_int8_t size;
 };
 

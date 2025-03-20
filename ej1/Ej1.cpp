@@ -1,7 +1,9 @@
 #include "Ej1.h"
 
 int main(){ 
-    vector<vector<int>> a = create_matrix(3); 
+    int n; 
+    cout<<"Dimension of the matrix?: "; cin >> n; 
+    vector<vector<int>> a = create_matrix(n); 
     print_matrix(a); 
     return 0; 
 }
